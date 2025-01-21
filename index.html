@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <header>
+    <div class="header-container">
+      <img src="cm_logo-removebg-preview.png" alt="Lodge Logo" class="logo">
+  
+    </div>
+  </header>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    header {
+      background-color: #4CAF50;
+      color: white;
+      text-align: center;
+      padding: 1rem 0;
+    }
+
+    h1 {
+      margin: 0;
+    }
+
+    main {
+      padding: 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    section {
+      margin-bottom: 2rem;
+      padding: 1rem;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: #4CAF50;
+      border-bottom: 2px solid #4CAF50;
+      padding-bottom: 0.5rem;
+    }
+
+    form {
+      display: grid;
+      gap: 1rem;
+    }
+
+    label {
+      font-weight: 600;
+    }
+
+    input, select, button {
+      padding: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 0.5rem;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    .icon {
+      width: 40px;
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>CM Lodge Management System</h1>
+  </header>
+
+  <main>
+    <section id="overview">
+      <h2>Overview</h2>
+      <div class="stats">
+        <div class="stat">
+          <p><strong>Rooms Occupied:</strong> <span id="rooms-occupied">0</span></p>
+        </div>
+       
+        <div class="stat">
+          <p><strong>Rooms Available:</strong> <span id="rooms-available">20</span></p>
+        </div>
+        <div class="stat">
+          <p><strong>Total Income:</strong> <span id="total-income">MWK0.00</span></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="customer-management">
+      <h2>Customer Management</h2>
+      <form id="customer-form">
+        <label for="customer-name">Name:</label>
+        <input type="text" id="customer-name" required>
+
+        <label for="customer-id">ID Details:</label>
+        <input type="text" id="customer-id" required>
+
+        <label for="customer-phone">Phone Number:</label>
+        <input type="tel" id="customer-phone" required>
+
+        <label for="customer-origin">Where They Are Coming From:</label>
+        <input type="text" id="customer-origin" required>
+
+        <label for="room-type">Room Type:</label>
+        <select id="room-type">
+          <option value="standard">Standard Room - MWK50/night</option>
+          <option value="superior">Superior Room - MWK100/night</option>
+          <option value="family">Family Room - MWK150/night</option>
+        </select>
+
+        <label for="check-in">Check-In Date:</label>
+        <input type="date" id="check-in" required>
+
+        <label for="check-out">Check-Out Date:</label>
+        <input type="date" id="check-out" required>
+
+        <label for="amount-paid">Amount Paid:</label>
+        <input type="number" id="amount-paid" required>
+
+        <button type="submit">Add Customer</button>
+      </form>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>ID</th>
+            <th>Phone</th>
+            <th>Origin</th>
+            <th>Room Type</th>
+            <th>Check-In</th>
+            <th>Check-Out</th>
+            <th>Amount Paid</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="customer-list">
+        </tbody>
+      </table>
+    </section>
+
+    <section id="staff-management">
+      <h2>Staff on Dutty</h2>
+      <form id="staff-form">
+        <label for="staff-name">Staff Name:</label>
+        <input type="text" id="staff-name" required>
+
+        <label for="staff-phone">Phone Number:</label>
+        <input type="tel" id="staff-phone" required>
+
+        <label for="duty-shift">Shift:</label>
+        <select id="duty-shift">
+          <option value="morning">Morning</option>
+          <option value="afternoon">Afternoon</option>
+          <option value="night">Night</option>
+        </select>
+
+        <label for="shift-start">Shift Start:</label>
+        <input type="time" id="shift-start" required>
+
+        <label for="shift-end">Shift End:</label>
+        <input type="time" id="shift-end" required>
+
+        <button type="submit">Add Staff</button>
+      </form>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Shift</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="staff-list">
+        </tbody>
+      </table>
+    </section>
+
+    <section id="reports">
+      <h2>Reports</h2>
+      <button id="checked-in-rooms">View Checked-In Rooms</button>
+      <button id="vacant-rooms">View Vacant Rooms</button>
+      <button id="room-history">View Room History</button>
+      <button id="export-data">Download Data</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 CM Lodge Management System</p>
+  </footer>
+
+  <script>
+    let customers = [];
+    let staff = [];
+    let roomsOccupied = 0;
+    const totalRooms = 20;
+    const roomPrices = {
+      standard: 50,
+      superior: 100,
+      family: 150,
+    };
+
+    function updateOverview() {
+      document.getElementById('rooms-occupied').textContent = roomsOccupied;
+      document.getElementById('rooms-available').textContent = totalRooms - roomsOccupied;
+      const totalIncome = customers.reduce((sum, customer) => sum + parseFloat(customer.amountPaid), 0);
+      document.getElementById('total-income').textContent = `$${totalIncome.toFixed(2)}`;
+    }
+
+    document.getElementById('customer-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById('customer-name').value;
+      const id = document.getElementById('customer-id').value;
+      const phone = document.getElementById('customer-phone').value;
+      const origin = document.getElementById('customer-origin').value;
+      const roomType = document.getElementById('room-type').value;
+      const checkIn = document.getElementById('check-in').value;
+      const checkOut = document.getElementById('check-out').value;
+      const amountPaid = document.getElementById('amount-paid').value;
+
+      customers.push({ name, id, phone, origin, roomType, checkIn, checkOut, amountPaid });
+      roomsOccupied++;
+      updateOverview();
+      renderCustomerList();
+    });
+
+    document.getElementById('staff-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById('staff-name').value;
+      const phone = document.getElementById('staff-phone').value;
+      const shift = document.getElementById('duty-shift').value;
+      const shiftStart = document.getElementById('shift-start').value;
+      const shiftEnd = document.getElementById('shift-end').value;
+
+      staff.push({ name, phone, shift, shiftStart, shiftEnd });
+      renderStaffList();
+    });
+
+    function renderCustomerList() {
+      const customerList = document.getElementById('customer-list');
+      customerList.innerHTML = customers
+        .map(
+          (customer, index) => `
+          <tr>
+            <td>${customer.name}</td>
+            <td>${customer.id}</td>
+            <td>${customer.phone}</td>
+            <td>${customer.origin}</td>
+            <td>${customer.roomType}</td>
+            <td>${customer.checkIn}</td>
+            <td>${customer.checkOut}</td>
+            <td>${customer.amountPaid}</td>
+            <td>
+              <button onclick="removeCustomer(${index})">Remove</button>
+            </td>
+          </tr>`
+        )
+        .join('');
+    }
+
+    function renderStaffList() {
+      const staffList = document.getElementById('staff-list');
+      staffList.innerHTML = staff
+        .map(
+          (staffMember, index) => `
+          <tr>
+            <td>${staffMember.name}</td>
+            <td>${staffMember.phone}</td>
+            <td>${staffMember.shift}</td>
+            <td>${staffMember.shiftStart}</td>
+            <td>${staffMember.shiftEnd}</td>
+            <td>
+              <button onclick="removeStaff(${index})">Remove</button>
+            </td>
+          </tr>`
+        )
+        .join('');
+    }
+
+    function removeCustomer(index) {
+      customers.splice(index, 1);
+      roomsOccupied--;
+      updateOverview();
+      renderCustomerList();
+    }
+
+    function removeStaff(index) {
+      staff.splice(index, 1);
+      renderStaffList();
+    }
+
+    document.getElementById('export-data').addEventListener('click', () => {
+      const data = [
+        ['Type', 'Name', 'Phone', 'ID/Shift', 'Check-In/Shift Start', 'Check-Out/Shift End', 'Room Type', 'Amount Paid'],
+        ...customers.map(c => ['Customer', c.name, c.phone, c.id, c.checkIn, c.checkOut, c.roomType, c.amountPaid]),
+        ...staff.map(s => ['Staff', s.name, s.phone, s.shift, s.shiftStart, s.shiftEnd, '', '']),
+      ];
+
+      const csvContent = data.map(e => e.join(",")).join("\n");
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "lodge_data.csv";
+      link.click();
+    });
+
+    // Initial setup
+    updateOverview();
+  </script>
+</body>
+</html>
